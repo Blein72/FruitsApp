@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="fruitItem"
+            type="com.example.fruitsapp.domain.model.Fruit" />
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:id="@+id/description_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/app_left_right_padding"
+            android:orientation="vertical">
+
+           <TextView
+               android:id="@+id/name"
+               android:text="@{fruitItem.name}"
+               tools:text="Banana"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content" />
+
+        </LinearLayout>
+
+    </RelativeLayout>
+</layout>

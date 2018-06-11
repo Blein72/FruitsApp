@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:id="@+id/content_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginLeft="@dimen/app_left_right_padding"
+            android:layout_marginRight="@dimen/app_left_right_padding"
+            android:textSize="@dimen/header_text_Size"
+            tools:text="Banana" />
+
+        <TextView
+            android:id="@+id/weight_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/name"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="@dimen/fruit_label_text_margin"
+            android:text="@string/fruit_weight"
+            android:textSize="@dimen/details_text_size" />
+
+        <TextView
+            android:id="@+id/weight"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_toEndOf="@+id/weight_label"
+            android:layout_below="@+id/name"
+            android:layout_toRightOf="@+id/weight_label"
+            android:textSize="@dimen/details_text_size"
+            tools:text="23" />
+
+        <TextView
+            android:id="@+id/deliciousnes_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/weight_label"
+            android:layout_marginRight="@dimen/fruit_label_text_margin"
+            android:layout_marginTop="6dp"
+            android:text="@string/fruit_deleciousnes_level"
+            android:textSize="@dimen/details_text_size" />
+
+        <TextView
+            android:id="@+id/deliciousnes"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/weight_label"
+            android:layout_marginTop="6dp"
+            android:layout_toEndOf="@+id/deliciousnes_label"
+            android:layout_toRightOf="@+id/deliciousnes_label"
+            android:textSize="@dimen/details_text_size"
+            tools:text="6666666666666666666666666665" />
+
+        <TextView
+            android:id="@+id/color_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/deliciousnes_label"
+            android:layout_marginRight="@dimen/fruit_label_text_margin"
+            android:layout_marginTop="6dp"
+            android:text="@string/fruit_color"
+            android:textSize="@dimen/details_text_size" />
+
+        <TextView
+            android:id="@+id/color"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_below="@+id/deliciousnes_label"
+            android:layout_marginEnd="@dimen/app_left_right_padding"
+            android:layout_marginRight="@dimen/app_left_right_padding"
+            android:layout_marginTop="6dp"
+            android:layout_toEndOf="@+id/color_label"
+            android:layout_toRightOf="@+id/color_label"
+            android:textSize="@dimen/details_text_size"
+            tools:text="green" />
+
+        <TextView
+            android:id="@+id/created_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/color_label"
+            android:layout_marginRight="@dimen/fruit_label_text_margin"
+            android:layout_marginTop="6dp"
+            android:text="@string/fruit_created_date" />
+
+        <TextView
+            android:id="@+id/created_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/color_label"
+            android:layout_marginTop="6dp"
+            android:layout_toEndOf="@+id/created_label"
+            android:layout_toRightOf="@+id/created_label"
+            tools:text="20.12.2020" />
+
+        <TextView
+            android:id="@+id/updated_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/created_label"
+            android:layout_marginRight="@dimen/fruit_label_text_margin"
+            android:layout_marginTop="6dp"
+            android:text="@string/fruit_updated_date" />
+
+        <TextView
+            android:id="@+id/updated_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/created_label"
+            android:layout_marginTop="6dp"
+            android:layout_toEndOf="@+id/updated_label"
+            android:layout_toRightOf="@+id/updated_label"
+            tools:text="21.12.2020" />
+
+    </RelativeLayout>
+    <ProgressBar
+        android:id="@+id/progress_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"/>
+
+</RelativeLayout>

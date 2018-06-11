@@ -1,3 +1,13 @@
 <resources>
     <string name="app_name">FruitsApp</string>
+    <string name="add_fruit_button">Добавить</string>
+    <string name="add_fruit">Добавление фрукта</string>
+    <string name="fruit_name">Имя:</string>
+    <string name="fruit_weight">Вес:</string>
+    <string name="fruit_deleciousnes_level">Вкусный: </string>
+    <string name="fruit_color">Цвет:</string>
+    <string name="fruit_created_date">Дата создания:</string>
+    <string name="fruit_updated_date">Дата последнего обновления:</string>
+    <string name="fruit_sent_sucessfull">Успешно</string>
+    <string name="fruit_sent_error">Ошибка при отправке</string>
 </resources>
