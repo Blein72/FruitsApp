@@ -11,4 +11,8 @@ interface FruitsRepository {
     fun getFruitById(id: String): Observable<Fruit>
 
     fun addNewFruit(data: NewFruitDto): Observable<Fruit>
+
+    fun saveFruitList(data: List<Fruit>)
+
+    fun getCachedFruitlist(): List<Fruit>?
 }

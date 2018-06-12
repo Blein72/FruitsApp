@@ -4,9 +4,7 @@ import android.app.AlertDialog
 import android.app.Fragment
 import android.databinding.ObservableArrayList
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import com.example.fruitsapp.BR
 import com.example.fruitsapp.R
 import com.example.fruitsapp.databinding.ListItemFruitBinding
@@ -42,7 +40,22 @@ class FruitsListFragment: Fragment(), FruitsListFragmentView {
         super.onCreate(savedInstanceState)
         retainInstance=true
 
+        setHasOptionsMenu(true)
+
         setupComponent()
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?, inflater: MenuInflater?) {
+        //super.onCreateOptionsMenu(menu, inflater)
+        inflater?.inflate(R.menu.fragment_list_menu, menu);
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+
+        when(item?.itemId) {
+            R.id.repeat_request -> presenter.sendFruitListRequest()
+        }
+        return super.onOptionsItemSelected(item)
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? =
@@ -57,7 +70,7 @@ class FruitsListFragment: Fragment(), FruitsListFragmentView {
         showProgress()
         hideContent()
 
-        presenter.getFruitslist()
+        presenter.getCachedListAndSendRequest()
     }
 
     override fun setFruitListData(data: List<Fruit>) {

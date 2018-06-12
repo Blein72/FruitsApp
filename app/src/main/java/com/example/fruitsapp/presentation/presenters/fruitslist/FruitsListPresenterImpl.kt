@@ -1,5 +1,6 @@
 package com.example.fruitsapp.presentation.presenters.fruitslist
 
+import android.util.Log
 import com.example.fruitsapp.domain.interactor.fruitslist.FruitsListInteractor
 import com.example.fruitsapp.domain.model.Fruit
 import com.example.fruitsapp.presentation.ui.fragments.fruitlist.FruitsListFragmentView
@@ -15,6 +16,7 @@ constructor(private val view: FruitsListFragmentView,
     private fun onRequestSuccess(data: List<Fruit>) {
         view.hideProgress()
         view.showContent()
+        cacheList(data)
         view.setFruitListData(data)
     }
 
@@ -32,6 +34,7 @@ constructor(private val view: FruitsListFragmentView,
                             onRequestSuccess(it)
                         },
                         onError = {
+                            Log.e("OBSERVABLE ERROR!!!!!", it.toString())
                             onError()
                         }
                 )
@@ -52,5 +55,23 @@ constructor(private val view: FruitsListFragmentView,
 
     override fun getFruitslist() {
         sendFruitListRequest()
+    }
+
+    override fun getCachedListAndSendRequest() {
+        showCachedList()
+        sendFruitListRequest()
+    }
+
+    private fun cacheList(data: List<Fruit>) {
+        interactor.saveFruitList(data)
+    }
+
+    private fun showCachedList() {
+        val data = interactor.getCachedFruitlist()
+        if (data != null) {
+            view.hideProgress()
+            view.showContent()
+            view.setFruitListData(data)
+        }
     }
 }

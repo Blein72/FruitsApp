@@ -5,4 +5,8 @@ import io.reactivex.Observable
 
 interface FruitsListInteractor {
     fun getFruitList(): Observable<List<Fruit>>
+
+    fun saveFruitList(data: List<Fruit>)
+
+    fun getCachedFruitlist(): List<Fruit>?
 }

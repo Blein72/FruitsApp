@@ -9,6 +9,16 @@ class FruitsListInteractorImpl @Inject constructor
 (private val repository: FruitsRepositoryImpl): FruitsListInteractor {
 
     override fun getFruitList(): Observable<List<Fruit>> {
-        return repository.getFruitsList()
+       return repository.getFruitsList()
     }
+
+    override fun saveFruitList(data: List<Fruit>) {
+        repository.saveFruitList(data)
+    }
+
+    override fun getCachedFruitlist(): List<Fruit>? {
+       return repository.getCachedFruitlist()
+    }
+
+
 }

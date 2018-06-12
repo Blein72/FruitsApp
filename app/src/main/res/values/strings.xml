@@ -14,4 +14,5 @@
     <string name="dialog_request_error_text">Отправить запрос заново?</string>
     <string name="dialog_request_error_yes_button">Отправить</string>
     <string name="dialog_request_error_no_button">Отмена</string>
+    <string name="fragment_list_menu_repeat">Повторить запрос</string>
 </resources>

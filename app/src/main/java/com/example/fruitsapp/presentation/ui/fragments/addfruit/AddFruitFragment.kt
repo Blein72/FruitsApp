@@ -38,6 +38,7 @@ class AddFruitFragment: Fragment(), AddFruitFragmentView {
         super.onViewCreated(view, savedInstanceState)
 
         setupUI()
+        hideProgress()
     }
 
     private fun setupUI() {

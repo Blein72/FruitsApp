@@ -13,7 +13,7 @@ class AddFruitPresenterImpl @Inject constructor(
         private val interactor: AddFruitInteractor) : AddFruitPresenter {
 
     override fun sendNewFruit(data: NewFruitDto) {
-
+        view.showProgress()
         interactor.addNewFruit(data)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())

@@ -5,6 +5,8 @@ import com.example.fruitsapp.domain.app.di.AppComponent
 import com.example.fruitsapp.domain.app.di.AppModule
 import com.example.fruitsapp.domain.app.di.DaggerAppComponent
 import com.example.fruitsapp.domain.repository.RepositoryModule
+import io.realm.Realm
+import io.realm.RealmConfiguration
 
 class AppImpl: Application(),App {
 
@@ -19,5 +21,9 @@ class AppImpl: Application(),App {
 
     override fun onCreate() {
         super.onCreate()
+        Realm.init(this)
+        Realm.setDefaultConfiguration(
+                RealmConfiguration.Builder()
+                        .build())
     }
 }

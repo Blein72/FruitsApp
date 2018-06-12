@@ -6,4 +6,5 @@ interface FruitsListPresenter {
     fun goToFruitDetails(id: Long)
     fun goToAddFruit()
     fun sendFruitListRequest()
+    fun getCachedListAndSendRequest()
 }

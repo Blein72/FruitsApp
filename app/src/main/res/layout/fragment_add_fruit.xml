@@ -36,8 +36,10 @@
 
             <EditText
                 android:id="@+id/name"
+                android:text="banana"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
+                android:imeOptions="actionDone"
                 tools:text="Banana" />
         </LinearLayout>
 
@@ -60,6 +62,7 @@
                 android:id="@+id/weight"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
+                android:imeOptions="actionDone"
                 android:text="23"
                 android:inputType="number"
                 android:textSize="@dimen/details_text_size"
@@ -115,6 +118,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="6dp"
+                android:imeOptions="actionDone"
                 android:text="yellow"
                 android:textSize="@dimen/details_text_size"
                 tools:text="green" />
@@ -136,6 +140,5 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"/>
-
 
 </RelativeLayout>
