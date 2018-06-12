@@ -1,5 +1,6 @@
 package com.example.fruitsapp.presentation.ui.fragments.fruitlist
 
+import android.app.AlertDialog
 import android.app.Fragment
 import android.databinding.ObservableArrayList
 import android.os.Bundle
@@ -13,12 +14,15 @@ import com.example.fruitsapp.domain.model.Fruit
 import com.example.fruitsapp.presentation.presenters.fruitslist.FruitsListPresenter
 import com.example.fruitsapp.presentation.ui.activities.main.MainScreen
 import com.example.fruitsapp.presentation.ui.activities.main.MainScreenTypesRouter
+import com.example.fruitsapp.presentation.ui.dialogs.RequestErrorDialog
 import com.example.fruitsapp.presentation.ui.fragments.fruitdetail.FruitDetailsFragment
 import com.github.nitrico.lastadapter.LastAdapter
 import kotlinx.android.synthetic.main.fragment_fruits_list.*
 import javax.inject.Inject
 
 class FruitsListFragment: Fragment(), FruitsListFragmentView {
+
+    lateinit var dialog: AlertDialog
 
     @Inject
     lateinit var presenter: FruitsListPresenter
@@ -27,7 +31,7 @@ class FruitsListFragment: Fragment(), FruitsListFragmentView {
     private val fruitItem:Int = BR.fruitItem
     private val adapter: LastAdapter = LastAdapter(list = fruitsDataList, variable = fruitItem, stableIds = true)
             .map<Fruit, ListItemFruitBinding>(R.layout.list_item_fruit) {
-                onClick { presenter.goToFruitDetails(it.binding.fruitItem.id) }
+                onClick { presenter.goToFruitDetails(it.binding.fruitItem?.id!!) }
             }
 
     private fun setupComponent() {
@@ -39,8 +43,6 @@ class FruitsListFragment: Fragment(), FruitsListFragmentView {
         retainInstance=true
 
         setupComponent()
-
-        setupDialog()
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? =
@@ -52,6 +54,10 @@ class FruitsListFragment: Fragment(), FruitsListFragmentView {
         adapter.into(fruitsList)
         add_fruit.setOnClickListener { presenter.goToAddFruit() }
 
+        showProgress()
+        hideContent()
+
+        presenter.getFruitslist()
     }
 
     override fun setFruitListData(data: List<Fruit>) {
@@ -59,8 +65,13 @@ class FruitsListFragment: Fragment(), FruitsListFragmentView {
         fruitsDataList.addAll(data)
     }
 
-    private fun setupDialog() {
+    private fun createDialog(): AlertDialog {
+       return RequestErrorDialog.newInstance(activity, {presenter.getFruitslist()})
+    }
 
+    override fun showErrorDialog() {
+        dialog = createDialog()
+        dialog.show()
     }
 
     override fun showProgress() {
@@ -72,7 +83,7 @@ class FruitsListFragment: Fragment(), FruitsListFragmentView {
     }
 
     override fun showContent() {
-       fruitsList.visibility = View.VISIBLE
+        fruitsList.visibility = View.VISIBLE
     }
 
     override fun hideContent() {

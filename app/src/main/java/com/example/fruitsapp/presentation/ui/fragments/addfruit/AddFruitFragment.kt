@@ -1,5 +1,6 @@
 package com.example.fruitsapp.presentation.ui.fragments.addfruit
 
+import android.app.AlertDialog
 import android.app.Fragment
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -9,10 +10,13 @@ import android.widget.Toast
 import com.example.fruitsapp.R
 import com.example.fruitsapp.domain.model.NewFruitDto
 import com.example.fruitsapp.presentation.presenters.addfruit.AddFruitPresenter
+import com.example.fruitsapp.presentation.ui.dialogs.RequestErrorDialog
 import kotlinx.android.synthetic.main.fragment_add_fruit.*
 import javax.inject.Inject
 
 class AddFruitFragment: Fragment(), AddFruitFragmentView {
+
+    lateinit var dialog: AlertDialog
 
     @Inject
     lateinit var presenter: AddFruitPresenter
@@ -40,8 +44,7 @@ class AddFruitFragment: Fragment(), AddFruitFragmentView {
         send_fruit.setOnClickListener { sendFruitData() }
     }
 
-
-    override fun sendFruitData() {
+    private fun gatherFruitData(): NewFruitDto {
         val fruitName = name.text.toString()
         var fruitWeight: Long
         try {
@@ -60,7 +63,13 @@ class AddFruitFragment: Fragment(), AddFruitFragmentView {
                 color = fruitColor,
                 delicious = fruitDeliciousnes
         )
-        presenter.sendNewFruit(newFruit)
+
+        return newFruit
+    }
+
+    override fun sendFruitData() {
+        gatherFruitData()
+        presenter.sendNewFruit(gatherFruitData())
     }
 
     override fun showProgress() {
@@ -77,5 +86,16 @@ class AddFruitFragment: Fragment(), AddFruitFragmentView {
 
     override fun errorSendingData() {
         Toast.makeText(activity,getString(R.string.fruit_sent_error),Toast.LENGTH_LONG).show()
+    }
+
+    private fun createDialog(): AlertDialog {
+        return RequestErrorDialog.newInstance(activity, {
+            presenter.sendNewFruit(gatherFruitData())
+        })
+    }
+
+    override fun showErrorDialog() {
+        dialog = createDialog()
+        dialog.show()
     }
 }

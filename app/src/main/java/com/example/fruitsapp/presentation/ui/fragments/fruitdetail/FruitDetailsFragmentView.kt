@@ -9,4 +9,6 @@ interface FruitDetailsFragmentView {
     fun hideProgress()
     fun showContent()
     fun hideContent()
+
+    fun showErrorDialog()
 }

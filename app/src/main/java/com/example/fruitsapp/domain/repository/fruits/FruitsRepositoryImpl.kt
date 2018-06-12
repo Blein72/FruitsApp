@@ -7,9 +7,10 @@ import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import io.reactivex.Observable
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import javax.inject.Inject
 
 
-class FruitsRepositoryImpl: FruitsRepository {
+class FruitsRepositoryImpl @Inject constructor(): FruitsRepository {
     private val retrofit: Retrofit
     private val fruitInterface: FruitsApiInterface
     init {

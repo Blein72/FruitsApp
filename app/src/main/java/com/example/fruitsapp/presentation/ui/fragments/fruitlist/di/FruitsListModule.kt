@@ -20,13 +20,15 @@ class FruitsListModule(private val view: FruitsListFragmentView) {
 
     @Provides
     @FragmentScope
-    fun providePresenter(presenter: FruitsListPresenterImpl): FruitsListPresenter {
-        return presenter
+    fun provideInteractor(interactor: FruitsListInteractorImpl): FruitsListInteractor {
+        return interactor
     }
 
     @Provides
     @FragmentScope
-    fun provideInteractor(interactor: FruitsListInteractorImpl): FruitsListInteractor {
-        return interactor
+    fun providePresenter(presenter: FruitsListPresenterImpl): FruitsListPresenter {
+        return presenter
     }
+
+
 }

@@ -6,8 +6,9 @@ import com.example.fruitsapp.presentation.ui.fragments.addfruit.AddFruitFragment
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.rxkotlin.subscribeBy
 import io.reactivex.schedulers.Schedulers
+import javax.inject.Inject
 
-class AddFruitPresenterImpl(
+class AddFruitPresenterImpl @Inject constructor(
         private val view: AddFruitFragmentView,
         private val interactor: AddFruitInteractor) : AddFruitPresenter {
 

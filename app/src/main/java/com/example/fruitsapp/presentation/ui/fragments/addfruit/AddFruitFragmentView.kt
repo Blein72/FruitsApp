@@ -6,4 +6,6 @@ interface AddFruitFragmentView {
     fun hideProgress()
     fun dataSendSuccessful()
     fun errorSendingData()
+
+    fun showErrorDialog()
 }

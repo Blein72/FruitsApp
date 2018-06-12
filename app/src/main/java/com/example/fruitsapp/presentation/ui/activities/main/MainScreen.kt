@@ -25,12 +25,18 @@ class MainScreen : AppCompatActivity(),
         AddFruitFragmentInjector,
         MainScreenView{
 
-    open lateinit var component: MainScreenComponent
+    lateinit var component: MainScreenComponent
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setupComponent()
         setContentView(R.layout.activity_main)
+
+        setInitialFragment()
+    }
+
+    private fun setInitialFragment() {
+        setNextFragment(MainScreenTypesRouter.Companion.Types.FRUIT_LIST_SCREEN)
     }
 
     fun setupComponent() {

@@ -12,12 +12,6 @@ class FruitsListPresenterImpl @Inject
 constructor(private val view: FruitsListFragmentView,
             private val interactor: FruitsListInteractor) : FruitsListPresenter {
 
-    init {
-        sendFruitListRequest()
-        view.showProgress()
-        view.hideContent()
-    }
-
     private fun onRequestSuccess(data: List<Fruit>) {
         view.hideProgress()
         view.showContent()
@@ -26,9 +20,10 @@ constructor(private val view: FruitsListFragmentView,
 
     private fun onError() {
         view.hideProgress()
+        view.showErrorDialog()
     }
 
-    private fun sendFruitListRequest() {
+    override fun sendFruitListRequest() {
         interactor.getFruitList()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -40,6 +35,11 @@ constructor(private val view: FruitsListFragmentView,
                             onError()
                         }
                 )
+    }
+
+    private fun sendRequestWithProggress() {
+        view.showProgress()
+        view.hideContent()
     }
 
     override fun goToFruitDetails(id: Long) {

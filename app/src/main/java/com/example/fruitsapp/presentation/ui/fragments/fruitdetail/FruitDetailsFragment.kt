@@ -1,5 +1,6 @@
 package com.example.fruitsapp.presentation.ui.fragments.fruitdetail
 
+import android.app.AlertDialog
 import android.app.Fragment
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,9 +9,17 @@ import android.view.ViewGroup
 import com.example.fruitsapp.R
 import com.example.fruitsapp.domain.model.FragmentArgument
 import com.example.fruitsapp.domain.model.Fruit
+import com.example.fruitsapp.presentation.presenters.fruitdetail.FruitDetailsPresenter
+import com.example.fruitsapp.presentation.ui.dialogs.RequestErrorDialog
 import kotlinx.android.synthetic.main.fragment_fruit_details.*
+import javax.inject.Inject
 
 class FruitDetailsFragment: Fragment(), FruitDetailsFragmentView {
+
+    lateinit var dialog: AlertDialog
+
+    @Inject
+    lateinit var presenter: FruitDetailsPresenter
 
     companion object {
 
@@ -37,15 +46,25 @@ class FruitDetailsFragment: Fragment(), FruitDetailsFragmentView {
         super.onCreate(savedInstanceState)
 
         setupComponent()
+        presenter.setFruitId(arguments.getLong(FRUIT_DETAIL_FRAGMENT_ID))
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? =
             inflater.inflate(R.layout.fragment_fruit_details, container, false)
 
+    override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        showProgress()
+        hideContent()
+
+        presenter.sendFruitDetailsRequest()
+    }
+
     override fun setFruitDetails(data: Fruit) {
         name.text = data.name
         weight.text = data.weight.toString()
-        deliciousnes.text = data.delicious.toString()
+        deliciousnes.isChecked = data.delicious
         color.text = data.color
         created_date.text = data.created_at
         updated_date.text = data.updated_at
@@ -66,4 +85,14 @@ class FruitDetailsFragment: Fragment(), FruitDetailsFragmentView {
     override fun hideContent() {
         content_layout.visibility = View.GONE
     }
+
+    private fun createDialog(): AlertDialog {
+        return RequestErrorDialog.newInstance(activity, {presenter.sendFruitDetailsRequest()})
+    }
+
+    override fun showErrorDialog() {
+        dialog = createDialog()
+        dialog.show()
+    }
+
 }

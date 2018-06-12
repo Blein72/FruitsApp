@@ -12,4 +12,6 @@ interface FruitsListFragmentView {
     fun showContent()
     fun hideContent()
 
+    fun showErrorDialog()
+
 }

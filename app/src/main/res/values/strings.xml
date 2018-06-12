@@ -10,4 +10,8 @@
     <string name="fruit_updated_date">Дата последнего обновления:</string>
     <string name="fruit_sent_sucessfull">Успешно</string>
     <string name="fruit_sent_error">Ошибка при отправке</string>
+    <string name="dialog_request_error_title">Ошибка соединения</string>
+    <string name="dialog_request_error_text">Отправить запрос заново?</string>
+    <string name="dialog_request_error_yes_button">Отправить</string>
+    <string name="dialog_request_error_no_button">Отмена</string>
 </resources>
